@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+    
+  
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/1.1-latest/MathJax.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Key Cryptography</title>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="keys-icon.webp" class="logo">
+        <div class="links">
+        <a href = "#title">Overview</a> <br>
+        <a href="#desc">Description</a> <br>
+        <a href = "#app">Applications</a> <br>
+        <a href = "#weak">Weaknesses</a> <br>
+        <a href = "#ex">Examples</a><br>
+        <a href = "#hist">History</a><br>
+        <a href = "#ref">References</a>
+        </div>
+    </div>
+
+    <div class="mainbody">
+
+        <div id="title">
+            <div class = "label" id = "pkc">Public Key Crytography</div>
+            <div class="content">
+                <p>
+                    Have you ever entered your credit card information, excited to buy the new pony you just ordered on Ebay, and suddenly some hacker has all of your bank information and is stealing your money? No, it's not just bad luck, it's the way your payment was secured...or wasn't, in this case. The way things like payment, email, direct messages, and google searches are encrypted determines how easy it is for a hacker to intercept and alter. 
+                    Public Key Cryptography is a big part of online security in todays world. In the content following, you will see how Public Key Crytography uses ideas in Abstract Algebra like modulus groups, coprimes, and gcd. 
+
+                </p>
+
+            </div>
+        </div>
+
+
+
+        
+        <div id="desc">
+            
+            <div class = "label">Descriptions</div>
+
+            <div class="content">
+                <div class="totalDescr">
+
+                <div class="specDescr">
+                <h3>Encryption</h3> 
+                <p>Encryption is the process of converting data (plaintext) into another form, called cyphertext. Encrypted data can only be transformed back to the original data (or message) by authenticated users. 
+                    For example...<br><br>
+                    plaintext + encryption = cyphertext <br>
+                    cyphertext + decryption = plaintext <br>
+                    "Hello" + Encryption Key = "2bhsghdki" <br>
+                    "2bhsghdki" + Decryption Key = "Hello"
+                
+                </p>
+               
+            </div>
+
+                <img class = "image" src="Public_key_encryption_keys.svg.png">
+
+                </div>
+
+
+                <div class="totalDescr">
+                <div class="specDescr">
+                <h3>Public Key Cryptography</h3>
+                <p>Public Key Crytography uses a pair of keys, one public and one private for each pair. These keys are used to encrypt and decrypt messages sent between the holders of each pair.  
+                    The public key holds the encryption algorithm, the private key holds the decryption algorithm. Each holder of the keys, owns the others decryption algorithm. Each crytography algorithm is generated based on mathematical problems. A sender can also use the private key along with the message being sent to send a digital signature. This is helpful for the receiver, so they can verify who send the message and which private key to use to decrypt the message.
+                    Some public key algorithms include key distribution and secrecy (<a href="#dh">Diffie-Hellman Key Exchange</a>), some provide digital signatures (<a href="#dsa">Digital Signature Algorithm</a>), and some provide both (<a href="#rsa">RSA</a>).  
+                </p>
+                </div>
+                <img class="image" src="Sectigo-Quantum-Lab-Diagram.png">
+                </div>
+
+                <div class="totalDescr">
+                <div class="specDescr">
+
+                <h3>Diffie-Hellman Key Exchange</h3>
+                <p>DH Key Exchange is a cryptography algorithm that is only for secure key distribution. This allows for securely encrypted keys to be exchanged between communicating parites over a public channel (or network). The encrypted key exchange allows the conversation to not be decrypted by attackers. The communicating parties use public key cryptography to deliver messages. 
+                    The image on the right provides a visual for the keys held by Alice (the sender), Bob (the reciever), and the public (potentially a hacker). Notice Alice has a private key, public key, and common key (as does Bob). Alice will use her private key (R) to encrypt a message, then send the message to Bob, who will use his private key (RGY) to decrypt Alices message. This way, the public can only see the common keys and public keys. Keep in mind this visual picture only represents the exchaning of keys and how they are generated - as does the Diffie-Hellman Key Exchange.</p>
+                </div>
+                <img class="image" src="1_0pZHuJfi2HfhhisfaTO7hw.png">
+                </div>
+
+
+
+                <div class="totalDescr">
+                    <div class="specDescr">
+                <h3>RSA</h3>
+                <p>RSA is a cryptography algorithm that uses two linked keys to encrypt and decrypt messages being sent. This not only encrypts and decrypts data but can also digitally sign data as well. The key used to decrypt a message is opposite of the one to encrypt the message. 
+                    In the image to the right, this demonstrates the simplistic process of RSA. Bob wants to send a message to Alice. He holds Alice's public key, so he encrypts the message with that. Though the image does not show, the key can also digitally sign the message so when Alice recieves it, she knows it came from Bob. Once Alice has received her message, she can use her private key to decrypt the message. 
+                    With RSA, the key you use to encrypt is opposite from the key you use to decrypt. So, if Bob wanted, he could've encrypted the message using Alice's private key and sent the message. Then Alice would use her public key to decrypt the message. This (encryption by private key) is not commonly used because the public (anyone, including hackers) has Alice's public key. Meaning, if the messages encrypted by the private key was intercepted, 
+                    anyone would be able to decrypt the message using the public key. By using the public key to encrypt instead, it allows for better security and confidentiality of the message being sent. 
+                </p>
+                </div>
+                <img class="image" src="Diffie-Hellman-Key-Exchange-Vs.-RSA-Image.webp">
+                </div>
+
+
+                <div class="totalDescr">
+                    <div class="specDescr">
+                <h3>Digital Signatures</h3>
+                <p>A digital signature is generated from the senders private key. When the sender sends the encrypted message, they send it along with their digital signature. Though, like the messsage is encrypted, so is the signature. The signature goes through a <a href="#hash">hash function</a>. Then when the receiver gets the message, they can hash the signature using the same hash function to make sure it came from the right person. This process is known as a digital signature. Digital signatures authenticate users. Digital signatures cannot be modified by anyone, therefore forging signatures is not possible.</p>
+                </div>
+
+                <img class="image" src="dig_sign.jpg">
+                </div>
+
+
+                <div class="totalDescr">
+                    <div class="specDescr">
+                <h3 id="hash">Hashing</h3>
+                <p>A hashing function simple converts a given numeric or alphanumeric value into a small integer. There must exist a hash table that holds key-value pairs. The hashed message (now an integer) maps to the original message in the hash table. Using the hash function on a message will convert the message to an integer. Then using the hash function on the integer, converts the integer back to the message. This is by some algorithm (determined by the developer of the hash function) that uses the hash table as a mapping of values.</p>
+</div>
+<img class="image" src="HashingAlgorithm.png">
+</div>
+
+
+
+
+                <h3 id="padding">Padding Scheme</h3>
+                <p>Padding Schemes are methods agreed upon by users that secure the message being sent. These schemes pad the message $m$ with some number of additional bits. The size of the unpadded message, $M$, must be somewhat smaller than $m$. Some <a href="https://www.cryptosys.net/pki/manpki/pki_paddingschemes.html" target="_blank">examples</a> of padding schemes are: PKCS5, One and Zeros, ANSI X9.23, W3C, etc.</p>
+            </div>
+    </div>
+        
+
+        <div id="app">
+            
+            <div class = "label">Applications</div>
+
+            <div class="content">
+                <h3>Digital Signatures</h3>
+                <p>A message can be digitally signed with the senders private key. The message is sent without any encryption (due to the <a href="#dsa">digital signature process</a>). After receiving the message, the receiver verifies the signature of the sender with their public key.</p>
+
+                <h3>Digital Certificates</h3>
+                <p>Since attackers can intercept messages and alter the message and/or key, digital certificates are used to authenticate the public key of a user. Before any public keys are on the network and in use, each user in the message transactions requests a certificate authority (CA) that issues a digital signature to their public key. This digital certificate may consist of information such as the users' public key, user name, user signature, etc. </p>
+            
+                <h3>Other</h3>
+                <p>Today public key cryptosystems are used in online services such as emailing, online payment, websites (HTTPS), texts, etc.</p>
+
+            </div>
+        </div>
+
+        <div id="weak">
+            
+            <div class = "label">Weakenesses</div>
+
+            <div class="content">
+                <h3>Public Key Cryptography</h3>
+                <p>An attack can impersonate as an authenticated user. They can substitute the public key with a fake key. The can intercept messages and/or alter key. Online services of cryptosystems can only be secure when the public key is authentic and the user signatures are secure.</p>
+
+                <h3>RSA</h3>
+                <p>A big weakness of RSA is the fact that it's a slow algorithm (takes a while to excute). Due to the inefficiency of RSA, it's not ususally used to directly encrypt user data. Instead it's more used to transmit shared keys for <a href="#symm">symmetric key</a> cryptography.</p>
+                        
+            
+            </div>
+        </div>
+
+        <div id="ex">
+            <div class = "label">Algorithm</div>
+            <div class="content">
+                <h3 id = "dh">Diffie-Hellman (DH) Key Exchange </h3>
+                <p>
+                    The original implementation of DH uses mutliplicative group of integers modulo p (where p is prime) and g (in group G) is a primitive root modulo p. 
+                    In the following example of DH, <p class="known">known values</p> (known by anyone) are in red and <p class="unknown">unknown values</p> are in blue. 
+                <br><br>
+                Alice and Bob want to communicate. Alice and Bob agree to <p class="known">p = 23 </p> and <p class = "known">g = 5</p>. <br>
+                Alice chooses <p class="unknown">a = 4</p> and sends Bob $A = g^{a}\;mod \;p $. <br>
+                Bob chooses <p class="unknown">b = 3</p> and sends Alice B = $g^{b}\;mod\;p$.<br>
+                Alice computes $s=B^{a}\;mod\;p$ so $s=10^{4}\;mod\;23=18$.<br>
+                Bob computes $s=A^{b}\;mod\;p$ so $s=4^{3}\;mod\;23=18$. <br><br>
+                Alice and Bob have now shared a secret (the number 18). To decrypt the others' message, they solved:<br>
+                $$A^{b}\;mod\;p\;=\;g^{ab}\;mod\;p\;=\;(g^{b}\;mod\;p)^{a}\;mod\;p\;=\;(g^{a}\;mod\;p)^{b}\;mod\;p$$<br><br>
+                Keep in mind Alice and Bob would have to use larger values of $a$, $b$, and $p$ to make this encryption secure. In the case, since there are only 23 results of $n\;mod\;23$, this would not be very secure as there needs to be more than 23 results.
+                If $p$ were a prime number of at least 600 digits, then even the fastest computer using the most optimal algorithm could not solve $a$ when only given $g$, $p$, and $g^{a}\;mod\;p$. For a hacker to intercept a message of DH Key Exchange they would have to solve the Diffie-Hellman Problem:<br>
+                $$Given\;an\;element\;g\;and\;the\;values\;of\;g^{x}\;and\;g^{y},\;what\;is\;the\;value\;of\;g^{xy}?$$
+                Where g is the generator of the group and the group is the mutliplicative group of a finite field or elliptic curve.  <br>
+                
+                
+                <br>In general, the description of the protocol (DH) is as follows: <br><br>
+                Alice and Bob agree on a finite cylic group $G$ under multiplcation, where $|G|=n$ and <p class="known">$\lt g \gt \in G$.</p><br>
+                Alice picks <p class="unknown"> $a \in \mathbb{N} \; such\;that\; 1 \lt a \lt n$</p> and sends $g^{a} \in G$ to Bob.<br>
+                Bob picks <p class="unknown">$b \in \mathbb{N} \;such\;that\; 1 \lt b \lt n$</p> and sends $g^{b} \in G$ to Alice. <br>
+                Alice computes $ (g^{b})^{a}\;=\;g^{ba} \in G$<br>
+                Bob computes $(g^{a})^{b}\;=\;g^{ab} \in G$ <br>
+                Now Alice and Bob hold the group element $g^{ab} = g^{ba}$, which now serves as the shared secret key to decrypt messages. <br><br>
+                </p>
+
+            </div>
+
+            <div class="content">
+                <h3 id = "rsa">RSA</h3>
+                <p>A RSA user creates and publishes a public key based on two large prime number. The prime numbers are kept secret. Messages may be encrypted by anybody, with the public key, but only decrypted by those who know the chosen prime numbers. The security of this algorithm relies on the "factoring problem", that is the difficulty of factoring the product of two large prime numbers. To break this security, one would have to solve the RSA Problem (shown below). There are no current published methods to defeat the system, as long as a large enough key is used.</p>
+                <h4>RSA Problem</h4>
+                <p>There are four steps to the RSA Problem: key generation, key distribution, encryption, and decryption. The basic principal is to find three very large positive integers $e$, $d$, and $n$ such that with modular exponentiation for all integers $m$ ($0 \leq m \leq n$): $$(m^{e})^{d} \equiv m \;(mod\; n)$$
+                    Even knowing $e$, $n$ or even $m$, it can be very difficult to find d. The public key is represented by integers $n$ and $e$ and the private key by $d$ and $n$. $m$ represents the message. The four step process is as follows: <br>
+                    <ol style="list-style-type: upper-roman;">
+
+                        <li>Choose two large prime numbers $p$ and $q$.</li>
+                        <ol style="list-style-type: lower-roman;">
+                            <li>$p$ and $q$ should be chosen at random, be similar in magnitude but differ in length.</li>
+                            <li>$p$ and $q$ should be kept a secret</li>
+                        </ol>
+
+                        <li>Compute $n=pq$.</li>
+                        <ol style="list-style-type: lower-roman;">
+                            <li>$n$ is used as the modulus for both public and private keys. It's length (in bits) is the key length.</li>
+                            <li>$n$ is released to the network as part of the public key.</li>  
+                        </ol>
+
+                        <li>Compute $\alpha (n)$ where $\alpha$ is <a href="https://en.wikipedia.org/wiki/Carmichael%27s_totient_function_conjecture" target="_blank">Carmichaels Totient Function</a>.</li>
+                        <ol style="list-style-type: lower-roman;">
+                            <li>Since $n=pq$, $\alpha (n) = lmc(\alpha (p), \alpha (q))$ and since $p$ and $q$ are prime, then $\alpha (p) = \theta (p) = p-1$ and $\alpha (q) = \theta (q) = q-1$. Hence $\alpha (n) = lmc(p-1, q-1)$.</li>
+                            <li>$lmc$ can be calculated through the Euclidean algorithm $lmc(a,b)= \frac{|ab|}{gcd(a,b)}$.</li>
+                            <li>$\alpha (n)$ is kept secret.</li>
+                            </ol>
+
+
+                        <li>Choose integer $e$ such that $1 \lt e \lt \alpha (n)$ and $gcd(e, \alpha (n) ) = 1$ (that is, $e$ and $\alpha (n)$ are coprime).</li>
+                        <ol style="list-style-type: lower-roman;">
+                            <li>$e$ should have a short bit length and small <a href="https://en.wikipedia.org/wiki/Hamming_weight" target="_blank">Hamming weight</a>. This results in efficient encryption. Most commonly chosen value for $e$ is $2^{16} + 1$. The smallest and fasted value for $e$ is 3, but with such a small value it is less secure. </li>
+                            <li>$e$ is released on the network as part of the public key.</li>
+                            </ol>
+
+                            <li>Determine $d$ as $d \equiv e^{-1} \;(mod\; \alpha (n))$, that is $d$ is the mutliplicative inverse of $e$ modulo $\alpha (n)$.</li>
+                            <ol style="list-style-type: lower-roman;">
+                            <li>Solve for $d$ in the equation $de \; mod \; \alpha(n) =  1$. Since $e$ and $\alpha (n)$ are coprime, then the equation is a form of Bezouts identity, where $d$ is one of the coefficients.</li>
+                            <li>$d$ is kept secret as the private key exponent.</li>
+                        </ol>
+                        </ol>
+                    </p>
+
+                        <h4>Example</h4>
+                        <h5>Key Distribution</h5>
+                        <p>Alice and Bob want to communicate. Bob needs Alices' public key so he can send a message to Alice. Alice transmits her public key $(n,e)$ to Bob via a reliable (but not necessarily secret) route. Alices' private key $d$ is never distributed.</p>
+                        
+                        <h5>Encryption</h5>
+                        <p>For Bob to encrypt the message $M$, he turns $M$ into an integer $m$ such that $0 \leq m \leq n$ by using an agreed upon reversible protocol known as a <a href="#padding">padding scheme</a>.He then computes the ciphertext $c$ using Alices' public key $e$: $$c \equiv m^{e} \; mod\; n$$ 
+                        Bob then transmits the message to Alice. </p>
+
+                        <h5>Decryption</h5>
+                        <p>Alice can recover $m$ from $c$ by using her private key exponent $d$ by computing: $$c^{d} \equiv (m^{e})^{d} \equiv m \;(mod \; n)$$ 
+                        Given $m$, she can recover the original message $M$ by reversing the padding scheme. 
+                        </p>
+                    
+            </div>
+
+
+            
+        </div>
+
+
+        <div id="hist">
+            <div class = "label">History</div>
+            <div class="content">
+                <h3>Public Key Cryptography</h3>
+                <p id="symm">Initally, symmetric crytography was used. This is where one key (algorithm) is sued for both the encryption and decryption of the message (or data). If the key is kept secure, the the data is secure.
+                     The biggest issue with the symmetric cryptosystem is the sharing of the key. It became difficult to securely share the key from sender to reciver. So the invention of the public key cryptosystem was made. 
+                     Public key cryptography is considered the most secure cryptography to create <a href="">digital signatures</a> and perform encryption. The idea of public key cryptography is attributed to Whitfield Diffie 
+                     and Martin Hellman who published the concept in 1976. They also have an algorithm (<a href="">Diffie-Hellman Key Exchange</a>) they published as well, as one of the first public key protocols.   </p>
+    
+                     <h3>RSA</h3>
+                     <p>RSA comes from the surnames Ron Rivest, Audi Shamir, and Leonard Adleman who publically described the cryptography algorithm in 1977. The same system was secretly developed in 1973 by a mathematician, Clifford Cocks, who worked for a British intelligence agency. Cliffords' sysytem was declassified in 1977.</p>
+            
+            
+                    </div>
+        </div>
+
+        <div class="examples">
+
+            <div class="label">Examples</div>
+            
+            <div class="content">
+                <p style = "font-size: 17px;"><b>After attempting each problem, click the problem to show the answer.</b></p>
+                <div class = "separator"></div>
+
+                <details>
+                    <summary>
+                        <p>RSA - Question 1: Let p = 5 and q = 7, and m = 14. Using RSA, determine if e = 10 or e = 11 will work and what the public key (e,n) and the private key (d, n) are.  </p>
+                        <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                    <p>e = 11<br> Public Key = (11, 35)<br>Private Key = (35, 35)</p>
+                </details>
+
+                <div class = "separator"></div>
+
+                <details>
+                    <summary>
+                        <p>RSA - Question 2: Using the results of Question 1, determine what the plaintext encrypted (ciphertext) and ciphertext decrypted (plaintext) is if m = 3. </p>
+                        <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                    <p>Ciphertext = 12 <br> Plaintext = 3</p>
+                </details>
+
+                <div class = "separator"></div>
+
+                <details>
+                    <summary>
+                        <p>RSA - Question 3: Assume the encryption/decryption algorithm turns each letter of the alphabet into their index. For example, "Hello" would turn into 
+                            [H, e, l, l, o] = [8, 5, 12, 12, 15]. 
+                            Let p = 5 and q = 7, and m = [8, 15, 15, 18, 1, 25]. Using RSA (and your previous results), show the ciphertext sent results in the plaintext received. </p>
+                        <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                    <a href = "#proof2">See Proof</a>
+                </details>
+                <div class = "separator"></div>
+
+                <details>
+                    <summary>
+                        <p>DHKE - Question 4: You and your best friend want to exchange keys. You agree upon the values, p = 13 and g = 7. You choose the value a = 5 and send your friend $g^{a} \; mod \; p = g^{5} \; mod \; 13$. 
+                            You receive $g^{3} \; mod \; 13$. What key (number) was shared between you and your friend?
+                        </p> <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                    <p>5</p>
+                </details>
+
+                <div class = "separator"></div>
+
+                <details>
+                    <summary>
+                        <p>DHKE - Question 5: You and your best friend want to exchange keys. You agree upon the values, p = 11 and g = 13. Choose a value of $a$ and $b$ and explain how and what the secret shared key is. 
+                        </p> <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                    <a href = '#proof5'>See Proof</a>
+                </details>
+
+
+
+
+                
+            </div>
+
+            <div class = "label">Proof</div>
+            <div class = "content">
+                <p><b>Click to reveal each proof after completing the exercises above.</b> <br></p>
+<br><br>
+                <details>
+                    <summary>
+                        <p>Proof of Question 1</p>
+                        <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+                
+
+
+                <br><p><b>Proof</b><br>
+                    Assume $p = 5$, $q = 7$. Using RSA, we want to determine whether $e = 10$ or $e = 11$ will work. By the process of RSA, $n = pq = 35$ and $\alpha(n) = lcm(p-1, q-1) = lcm(4,6) = 12$. Then we want to pick an $e$ such that $e$ and $\alpha(n)$ are coprime. 
+                    That is, by definition of coprime, $gcd(e, \alpha(n)) = 1$. Notice $gcd(10, 12) = 2$ and $gcd(11, 12) = 1$. This means $e$ must equal 11. Now we want to show what the private and public keys are. By RSA, the public key is (e, n) and the private key is (d, n). We must
+                    choose d such that $de \; mod \; \alpha(n) = 1$. Let $d = p[pe \; mod \; \alpha(n)] = 5[55 \; mod \; 12] = 5[7] = 35$. Then the public key is $(e,n) = (11, 35)$ and the private key is $(d, n) = (35, 35)$.<br>
+                    <b>Q.E.D.</b>
+                </p>
+            </details>
+<br><br>
+            <details>
+                <summary>
+                    <p id = "proof2">Proof of Question 2</p>
+                    <span class="icon">
+                        <i class="fa-solid fa-triangle"></i>                        
+                    </span>
+                </summary>
+
+               <p><b>Proof</b><br>
+                    Let m = 3. We want to show the ciphertext (c) and plaintext (p). By RSA, $c = m^{e} \; mod \; n$ (by using the public key). So $c = 3^{11} \; mod \; 35 = 12$. Therefore the sent encrypted message is the number 12. Then using the private key to decrypt this, 
+                    we get $m = c^{d} \; mod \; n = 12^{35} \; mod \; 35 = 3$. Therefore the decrypted message, 3, equals the sent message, 3.<br>
+                    <b>Q.E.D.</b>
+                </p>
+                </details>
+
+                <br><br>
+                <details>
+                    <summary>
+                        <p>Proof of Question 3</p>
+                        <span class="icon">
+                            <i class="fa-solid fa-triangle"></i>                        
+                        </span>
+                    </summary>
+
+                <p><b>Proof</b><br>
+                Let $p = 7$ , q = $13$, $e = 5$, and $m = [8, 71, 71, 44, 1, 51]$. We want to show the decoded ciphertext. By RSA, $n = pq = 91$ and $\alpha(n) = 
+                lcm(p-1, q-1) = lcm(6, 12) = 12$. Next we must compute the private key (d, n) such that $de \; mod \; \alpha(n) = 1$. Let $d = p[pe \; mod \; \alpha(n)] = 7[7*5 \; mod \; 12] = 7[11] = 77$. 
+                Notice $de \; mod \; \alpha(n) = 77*5 \; mod \; 12 = 385 \; mod \; 12 = 1$. So our public key is $(e,n) = (5, 91)$ and our private key is $(d, n) = (77, 91)$. To decrypt the encrypted message m, and therefore show the decoded ciphertext, 
+                we must take each integer in m and apply the private key to it. That is, for each integer in m, we are computing $c = m_{1}^{d} \; mod \; n$ where m_{1} is an integer in m. By doing this, we get c = [8, 15, 15, 18, 1, 25]. Then by using our determined algorithm above, our received message 
+                is "hooray". <br>
+                <b>Q.E.D.</b>           
+            </p>
+            </details>
+
+            <br><br>
+            <details>
+                <summary>
+                    <p>Proof of Question 4</p>
+                    <span class="icon">
+                        <i class="fa-solid fa-triangle"></i>                        
+                    </span>
+                </summary>
+
+            <p><b>Proof</b><br>
+            Let p = 13, g = 7, and a = 5. We want to use the received message, $B = g^{3} \; mod \; 13$ to determine the shared key. By Diffie Hellman Key Exchange, we can compute 
+            $B = 7^{3} \; mod \; 13 = 5$. Then we can compute $s = B^{a} \; mod \; p= 5^{5} \; mod \; 13= 3125 \; mod \; 13 = 5$. Thus the shared key between you and your friend was the number 5. 
+            <br>
+            <b>Q.E.D.</b>           
+        </p>
+        </details>
+
+        <br><br>
+            <details>
+                <summary>
+                    <p id = "proof5">Proof of Question 5</p>
+                    <span class="icon">
+                        <i class="fa-solid fa-triangle"></i>                        
+                    </span>
+                </summary>
+
+            <p><b>Proof</b><br>
+            Let p = 11, g = 13, a = 4, and b = 7. Then the message sent to the friend is $A = g^{a} \; mod \; p = 13^{4} \; mod \; 11 = 5$. THe message recieved is $B = g^{b} \; mod \; p = 13^{7} \; mod \; 11 = 7$. Then $s = B^{a} \; mod \; p = 7^{4} \; mod \; 11 = 2401 \; mod \; 11 = 3$ and $s = A^{b} \; mod \; 11 = 5^{7} \; mod \; 11 = 78125 \; mod \; 11 = 3$. Since $s = B^{a} = A^{b} = 3$ then the shared key was the number 3. 
+         <br>
+            <b>Q.E.D.</b>           
+        </p>
+        </details>
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <div id="ref">
+            <div class = "label">References</div>
+            <div class="content">
+
+                <p>
+                “Diffie–Hellman Key Exchange.” <i>Wikipedia</i>, Wikimedia Foundation, 10 Nov. 2022, <a href="https://www.ibm.com/docs/en/ztpf/1.1.0.14?topic=concepts-public-key-cryptography" target="_blank">https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange</a>. <br><br>
+
+                “Diffie–Hellman Problem.” <i>Wikipedia</i>, Wikimedia Foundation, 2 Aug. 2022, <a href="https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/" target="_blank">https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_problem</a>.<br><br>
+
+                <i>How Does Public Key Cryptography Work? - Cloudflare</i>. <a href="https://www.ibm.com/docs/en/zos/2.2.0?topic=hierarchies-public-key-algorithms" target="_blank">https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/</a>.<br><br>
+
+                <i>International Journal of Recent Technology and Engineering (IJRTE)</i>, 9 Nov. 2022, <a href="https://crypto.stackexchange.com/questions/15792/abstract-algebra-in-cryptography" target="_blank">https://www.ijrte.org/</a>. <br><br>
+
+                leoleo 111 silver badge22 bronze badges, and CryptographeurCryptographeur 4. “Abstract Algebra in Cryptography.” <i>Cryptography Stack Exchange</i>, 1 July 1961, <a href="https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange" target="_blank">https://crypto.stackexchange.com/questions/15792/abstract-algebra-in-cryptography</a>.<br><br>
+
+                 “Public Key Algorithms.” <i>IBM</i>, <a href="https://en.wikipedia.org/wiki/Diffie–Hellman_problem" target="_blank">https://www.ibm.com/docs/en/zos/2.2.0?topic=hierarchies-public-key-algorithms</a>. <br><br>
+                    
+                 “Public Key Cryptography.” <i>IBM</i>, <a href="https://www.ijitee.org/wp-content/uploads/papers/v8i6s4/F11000486S419.pdf" target="_blank">https://www.ibm.com/docs/en/ztpf/1.1.0.14?topic=concepts-public-key-cryptography</a>.<br><br>
+
+                “RSA (Cryptosystem).” <i>Wikipedia</i>, Wikimedia Foundation, 10 Nov. 2022, <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)" target="_blank">https://en.wikipedia.org/wiki/RSA_(cryptosystem)</a>. 
+                </p>
+            </div>
+        </div>
+
+    </div>
+   
+</body>
+</html>
