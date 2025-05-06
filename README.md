@@ -1,20 +1,35 @@
-# Public Key Cryptography Project
-This project was developed for the Abstract Algebra course at UW-Eau Claire (2022) and focuses on explaining the concepts of Public Key Cryptography in a clear and accessible way. The project includes a website and a Jupyter notebook that provide detailed explanations, examples, and proofs.
+# 🔐 Public Key Cryptography Project
 
-Project Files:
-main.html:
-A Wiki-style webpage that provides a comprehensive introduction to Public Key Cryptography. The page is designed to cater to different learning styles and includes:
+This project was developed for the **Abstract Algebra** course at the **University of Wisconsin–Eau Claire (2022)**. It aims to clearly explain the principles of **Public Key Cryptography** through a combination of theoretical insights and interactive resources.
 
-Clear Explanations: Step-by-step breakdowns of the key concepts involved in public key cryptography.
-Example Problems: Practical examples to illustrate how public key cryptography works in real-world scenarios.
-Proofs: Mathematical proofs demonstrating the principles behind public key cryptography.
-Multiple Learning Styles: Content presented through both text and visual aids to enhance understanding.
-publicKeyCryptoExample.ipynb:
-A Jupyter Notebook that presents an easy-to-follow example of Public Key Cryptography in action. This file is designed to help learners grasp the technical aspects of the topic through code demonstrations and real-life applications.
+---
 
-Learning Objectives:
-Understand the basics of Public Key Cryptography.
-Explore the mathematical foundations of cryptographic algorithms.
-Gain insight into how public and private keys are used in secure communication.
-Work through practical examples and proofs that solidify the theoretical concepts.
-This project combines theoretical explanations with interactive elements to create a well-rounded learning experience for students of Abstract Algebra and anyone interested in cryptography.
+## 📁 Project Files
+
+### `main.html`
+A wiki-style webpage that introduces Public Key Cryptography in an accessible and engaging format.
+
+- 📘 **Clear Explanations**: Step-by-step breakdowns of essential concepts.
+- 🧮 **Example Problems**: Real-world scenarios demonstrating how public key systems function.
+- ✍️ **Mathematical Proofs**: Formal demonstrations of underlying cryptographic principles.
+- 🎨 **Multi-Modal Learning**: Uses both text and visual aids to support different learning styles.
+
+### `publicKeyCryptoExample.ipynb`
+An interactive **Jupyter Notebook** providing a hands-on demonstration of Public Key Cryptography.
+
+- 🧑‍💻 Code-based illustrations of encryption and decryption.
+- 📊 Realistic use cases to bridge theory with practice.
+- 🔄 Helps reinforce core concepts through applied learning.
+
+---
+
+## 🎯 Learning Objectives
+
+- Gain a foundational understanding of **Public Key Cryptography**.
+- Explore the **mathematical structures** behind encryption algorithms.
+- Understand the role of **public and private keys** in secure communication.
+- Work through **interactive examples and proofs** that solidify theoretical knowledge.
+
+---
+
+This project blends theory, visuals, and code to offer a comprehensive learning experience for students of **Abstract Algebra** and anyone interested in modern cryptographic systems.
